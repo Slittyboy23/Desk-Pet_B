@@ -51,16 +51,19 @@
 
       <div class="steps">
         <div class="step">
+          <div class="step-img"><img src="images/step1.jpg" alt="A colorful selection of animal figures to choose from" /></div>
           <span class="step-num">01</span>
           <h3>Pick Your Animal</h3>
           <p>Choose from the family — each one full of personality.</p>
         </div>
         <div class="step">
+          <div class="step-img"><img src="images/step2.jpg" alt="Bases to choose from: gravel, sand, or seashells" /></div>
           <span class="step-num">02</span>
           <h3>Pick Your Base</h3>
           <p>Smooth river gravel, soft beach sand, or hand-collected seashells.</p>
         </div>
         <div class="step">
+          <div class="step-img"><img src="images/desk_pets_web/pet_01.jpg" alt="A finished Desk Pet" /></div>
           <span class="step-num">03</span>
           <h3>Take Them Home</h3>
           <p>Sealed safely in a clear keepsake shell — ready to live on your desk.</p>
@@ -75,54 +78,16 @@
       <div class="section-head">
         <p class="overline">The Collection</p>
         <h2>Meet the family.</h2>
-        <p class="section-sub">A peek at the latest Desk Pets. New arrivals each season.</p>
+        <p class="section-sub">Thirty one-of-a-kind Desk Pets — and counting.</p>
       </div>
+    </div>
 
-      <div class="grid">
-        <article class="card">
-          <div class="card-img">
-            <img src="images/product1.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
-            <span class="placeholder-text">product1.jpg</span>
-          </div>
-          <div class="card-body">
-            <p class="card-meta">Coming soon</p>
-            <h3>No. 01</h3>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img">
-            <img src="images/product2.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
-            <span class="placeholder-text">product2.jpg</span>
-          </div>
-          <div class="card-body">
-            <p class="card-meta">Coming soon</p>
-            <h3>No. 02</h3>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img">
-            <img src="images/product3.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
-            <span class="placeholder-text">product3.jpg</span>
-          </div>
-          <div class="card-body">
-            <p class="card-meta">Coming soon</p>
-            <h3>No. 03</h3>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img">
-            <img src="images/product4.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
-            <span class="placeholder-text">product4.jpg</span>
-          </div>
-          <div class="card-body">
-            <p class="card-meta">Coming soon</p>
-            <h3>No. 04</h3>
-          </div>
-        </article>
-      </div>
+    <!-- Cycling carousel -->
+    <div class="carousel" id="petCarousel" aria-label="Desk Pet carousel">
+      <button class="carousel-btn carousel-prev" aria-label="Previous">‹</button>
+      <div class="carousel-track" id="petTrack"></div>
+      <button class="carousel-btn carousel-next" aria-label="Next">›</button>
+      <div class="carousel-dots" id="petDots"></div>
     </div>
   </section>
 
@@ -131,7 +96,7 @@
     <div class="container">
       <p class="overline overline-light">Our Promise</p>
       <h2>Built one at a time.<br/><span class="serif-em">Made to be loved.</span></h2>
-      <p>Every Desk Pet is sculpted, sealed, and signed by Brooklyn — no two are exactly alike.</p>
+      <p>Every Desk Pet is built, sealed, and signed by Brooklyn — no two are exactly alike.</p>
       <a href="about.html" class="btn btn-primary-light">Meet the Maker →</a>
     </div>
   </section>
@@ -148,6 +113,121 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- Desk Pet carousel ---------- */
+    (function() {
+      const TOTAL = 30;
+      const VISIBLE_DESKTOP = 4;
+      const VISIBLE_TABLET = 3;
+      const VISIBLE_MOBILE = 1;
+      const AUTOPLAY_MS = 3500;
+
+      const track = document.getElementById('petTrack');
+      const dotsWrap = document.getElementById('petDots');
+      const prevBtn = document.querySelector('.carousel-prev');
+      const nextBtn = document.querySelector('.carousel-next');
+
+      // Build slides
+      for (let i = 1; i <= TOTAL; i++) {
+        const num = String(i).padStart(2, '0');
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `
+          <div class="carousel-card">
+            <div class="carousel-img">
+              <img src="images/desk_pets_web/pet_${num}.jpg" alt="Desk Pet No. ${num}" loading="lazy" />
+            </div>
+            <p class="carousel-meta">No. ${num}</p>
+          </div>
+        `;
+        track.appendChild(slide);
+      }
+
+      function visibleCount() {
+        if (window.innerWidth <= 640) return VISIBLE_MOBILE;
+        if (window.innerWidth <= 960) return VISIBLE_TABLET;
+        return VISIBLE_DESKTOP;
+      }
+
+      let index = 0;
+      let autoplayTimer = null;
+
+      function pageCount() {
+        return Math.max(1, TOTAL - visibleCount() + 1);
+      }
+
+      function update() {
+        const v = visibleCount();
+        const slideWidth = track.querySelector('.carousel-slide').getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap || 0);
+        track.style.transform = `translateX(${-(slideWidth + gap) * index}px)`;
+        renderDots();
+      }
+
+      function renderDots() {
+        const dotsTotal = Math.ceil(TOTAL / visibleCount());
+        const activeDot = Math.floor(index / visibleCount());
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i < dotsTotal; i++) {
+          const d = document.createElement('button');
+          d.className = 'carousel-dot' + (i === activeDot ? ' active' : '');
+          d.setAttribute('aria-label', `Go to slide group ${i + 1}`);
+          d.addEventListener('click', () => {
+            index = Math.min(i * visibleCount(), TOTAL - visibleCount());
+            update();
+            restartAutoplay();
+          });
+          dotsWrap.appendChild(d);
+        }
+      }
+
+      function next() {
+        index = (index + 1) % pageCount();
+        update();
+      }
+      function prev() {
+        index = (index - 1 + pageCount()) % pageCount();
+        update();
+      }
+
+      function startAutoplay() {
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+      }
+      function stopAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+      }
+      function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      nextBtn.addEventListener('click', () => { next(); restartAutoplay(); });
+      prevBtn.addEventListener('click', () => { prev(); restartAutoplay(); });
+
+      const carousel = document.getElementById('petCarousel');
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+
+      // Touch swipe
+      let touchStartX = 0;
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoplay();
+      }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+        startAutoplay();
+      });
+
+      window.addEventListener('resize', () => {
+        if (index > pageCount() - 1) index = 0;
+        update();
+      });
+
+      update();
+      startAutoplay();
+    })();
   </script>
 </body>
 </html>

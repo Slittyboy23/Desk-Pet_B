@@ -14,3 +14,8 @@ npm-debug.log*
 # Env
 .env
 .env.local
+
+# Source/raw images — only the web-optimized versions are tracked
+images/Step 1.png
+images/Step 2.png
+images/desk_pets/

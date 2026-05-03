@@ -325,12 +325,28 @@ img { max-width: 100%; display: block; }
 .step:last-child { border-right: none; }
 .step:hover { background: var(--white); }
 
+.step-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg, var(--teal-soft) 0%, var(--purple-soft) 50%, var(--pink-soft) 100%);
+}
+.step-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.step:hover .step-img img { transform: scale(1.04); }
+
 .step-num {
   display: inline-block;
   font-family: var(--serif);
   font-size: 14px;
   color: var(--purple);
-  margin-bottom: 28px;
+  margin-bottom: 12px;
   letter-spacing: 0.04em;
 }
 .step h3 {
@@ -409,6 +425,115 @@ img { max-width: 100%; display: block; }
 .card-body h3 {
   font-size: 22px;
   letter-spacing: -0.01em;
+}
+
+/* ===========================================
+   Carousel (Meet the family)
+   =========================================== */
+.carousel {
+  position: relative;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 calc((100% - 24px * 3) / 4); /* 4 visible, 3 gaps */
+  min-width: 0;
+}
+
+.carousel-card {
+  display: flex;
+  flex-direction: column;
+}
+.carousel-img {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, var(--teal-soft) 0%, var(--purple-soft) 50%, var(--pink-soft) 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.carousel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.carousel-card:hover .carousel-img img { transform: scale(1.05); }
+
+.carousel-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple);
+  text-align: center;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 24px;
+  font-family: var(--serif);
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all .2s ease;
+  z-index: 2;
+}
+.carousel-btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+  transform: translateY(-50%) scale(1.05);
+}
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+.carousel-prev::before { content: ''; }
+.carousel-next::before { content: ''; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+  padding: 0 64px;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--line);
+  cursor: pointer;
+  padding: 0;
+  transition: all .2s ease;
+}
+.carousel-dot:hover { background: var(--purple-soft); }
+.carousel-dot.active {
+  background: var(--purple);
+  width: 28px;
+  border-radius: 999px;
 }
 
 /* ===========================================
@@ -595,6 +720,9 @@ img { max-width: 100%; display: block; }
   .facts-grid { grid-template-columns: repeat(2, 1fr); }
   .fact:nth-child(2) { border-right: none; }
   .fact:nth-child(1), .fact:nth-child(2) { border-bottom: 1px solid var(--line); }
+
+  /* Carousel: 3 visible */
+  .carousel-slide { flex-basis: calc((100% - 24px * 2) / 3); }
 }
 
 @media (max-width: 640px) {
@@ -617,6 +745,14 @@ img { max-width: 100%; display: block; }
 
   .grid { grid-template-columns: 1fr; gap: 32px; }
   .step { padding: 40px 24px; }
+
+  /* Carousel: 1 visible on phone */
+  .carousel { padding: 0 44px; }
+  .carousel-slide { flex-basis: 100%; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 20px; }
+  .carousel-prev { left: 4px; }
+  .carousel-next { right: 4px; }
+  .carousel-dots { padding: 0 20px; flex-wrap: wrap; }
 
   .about-grid { gap: 40px; margin-bottom: 80px; }
 
