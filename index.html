@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desk Pet — by Brooklyn</title>
+  <meta name="description" content="Tiny handmade pets in their own little world. Pick your animal. Pick your base. Take them home." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-text">Desk Pet</span>
+        <span class="logo-by">by Brooklyn</span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="#shop" class="nav-cta">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Handmade · One-of-a-kind</p>
+      <h1>A tiny pet, <em>just for your desk.</em></h1>
+      <p class="hero-sub">Each Desk Pet is built one at a time — choose your animal, choose your base, and bring home a little world all your own.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary">Shop the Collection</a>
+        <a href="#how" class="btn btn-link">How it's made →</a>
+      </div>
+    </div>
+    <div class="hero-decor decor1"></div>
+    <div class="hero-decor decor2"></div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="how">
+    <div class="container">
+      <div class="section-head">
+        <p class="overline">The Process</p>
+        <h2>Three steps. <span class="serif-em">One little pet.</span></h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3>Pick Your Animal</h3>
+          <p>Choose from the family — each one sculpted by hand and full of personality.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3>Pick Your Base</h3>
+          <p>Smooth river gravel, soft beach sand, or hand-collected seashells.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3>Take Them Home</h3>
+          <p>Sealed safely in a clear keepsake shell — ready to live on your desk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GALLERY -->
+  <section id="shop" class="gallery">
+    <div class="container">
+      <div class="section-head">
+        <p class="overline">The Collection</p>
+        <h2>Meet the family.</h2>
+        <p class="section-sub">A peek at the latest Desk Pets. New arrivals each season.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-img">
+            <img src="images/product1.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+            <span class="placeholder-text">product1.jpg</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">Coming soon</p>
+            <h3>No. 01</h3>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="images/product2.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+            <span class="placeholder-text">product2.jpg</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">Coming soon</p>
+            <h3>No. 02</h3>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="images/product3.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+            <span class="placeholder-text">product3.jpg</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">Coming soon</p>
+            <h3>No. 03</h3>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="images/product4.jpg" alt="Desk Pet" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+            <span class="placeholder-text">product4.jpg</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">Coming soon</p>
+            <h3>No. 04</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY STRIP -->
+  <section class="story-strip">
+    <div class="container">
+      <p class="overline overline-light">Our Promise</p>
+      <h2>Built one at a time.<br/><span class="serif-em">Made to be loved.</span></h2>
+      <p>Every Desk Pet is sculpted, sealed, and signed by Brooklyn — no two are exactly alike.</p>
+      <a href="about.html" class="btn btn-primary-light">Meet the Maker →</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Desk Pet</span>
+        <span class="logo-by">by Brooklyn</span>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> Desk Pet. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

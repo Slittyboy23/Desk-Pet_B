@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Desk Pet by Brooklyn</title>
+  <meta name="description" content="Meet Brooklyn, the maker behind Desk Pet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-text">Desk Pet</span>
+        <span class="logo-by">by Brooklyn</span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#shop" class="nav-cta">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="container">
+      <p class="eyebrow">The Maker</p>
+      <h1>Hi, I'm <em>Brooklyn.</em></h1>
+      <p class="about-tagline">I make tiny pets, one at a time, in their own little worlds.</p>
+    </div>
+    <div class="hero-decor decor1"></div>
+  </section>
+
+  <!-- BIO BLOCK -->
+  <section class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo">
+          <div class="photo-frame">
+            <img src="images/brooklyn.jpg" alt="Brooklyn, the maker" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+            <span class="placeholder-text">brooklyn.jpg</span>
+          </div>
+        </div>
+
+        <div class="about-bio">
+          <p class="overline">My Story</p>
+          <h2>How Desk Pet started.</h2>
+          <p class="muted-placeholder">[ Brooklyn — write your story here. Where the idea came from, what makes it special, why you love making them. ]</p>
+
+          <p class="overline overline-spaced">Why I Make Them</p>
+          <h2>Made with care.</h2>
+          <p class="muted-placeholder">[ Write the why here. What you hope someone feels when they get one. ]</p>
+        </div>
+      </div>
+
+      <!-- Fun Facts -->
+      <div class="fun-facts">
+        <div class="section-head">
+          <p class="overline">A Little About Me</p>
+          <h2>Things you should know.</h2>
+        </div>
+        <div class="facts-grid">
+          <div class="fact">
+            <p class="fact-label">Favorite Color</p>
+            <p class="fact-value muted-placeholder">[ ___ ]</p>
+          </div>
+          <div class="fact">
+            <p class="fact-label">Favorite Snack</p>
+            <p class="fact-value muted-placeholder">[ ___ ]</p>
+          </div>
+          <div class="fact">
+            <p class="fact-label">Favorite Animal</p>
+            <p class="fact-value muted-placeholder">[ ___ ]</p>
+          </div>
+          <div class="fact">
+            <p class="fact-label">Big Dream</p>
+            <p class="fact-value muted-placeholder">[ ___ ]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY STRIP -->
+  <section class="story-strip">
+    <div class="container">
+      <p class="overline overline-light">Ready to meet your pet?</p>
+      <h2>Find your <span class="serif-em">desk companion.</span></h2>
+      <a href="index.html#shop" class="btn btn-primary-light">Shop the Collection →</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Desk Pet</span>
+        <span class="logo-by">by Brooklyn</span>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> Desk Pet. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
